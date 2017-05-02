@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+
+<title>Document</title>
+
+<!--    angular cdn -->
+<script
+	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+
+<!--   bootstrap cdn script -->
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+<!-- bootstrap cdn link -->
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+<script src="js/script.js"></script>
+<script src="js/studentController.js"></script>
+
+</head>
+
+<style>
+body {
+	background-image:
+		url("http://webdesignhabits.com/wp-content/uploads/2012/11/post_67_13.jpg");
+}
+</style>
+
+<body ng-app="myApp" ng-controller="studentController">
+
+	<h3>Welcome to the Student Management System</h3>
+	<br />
+
+
+	<div class="col-md-offset-1 col-md-6" ng-show="val">
+		<form>
+			<div class="form-group">
+				<label for="orgID">Org ID:</label> <input type="text"
+					placeholder="Enter Org Id" class="form-control" ng-model="orgID"
+					id="fname">
+			</div>
+			<div class="form-group">
+				<label for="firstName">First Name:</label> <input type="text"
+					placeholder="Enter First Name" class="form-control"
+					ng-model="fname" id="fname">
+			</div>
+			<div class="form-group">
+				<label for="lastName">Last Name:</label> <input type="text"
+					placeholder="Enter Last Name" class="form-control" ng-model="lname"
+					id="lname">
+			</div>
+			<div class="form-group">
+				<label for="email">Email:</label> <input type="email"
+					class="form-control" id="email" placeholder="Enter email"
+					ng-model="email" name="email">
+			</div>
+			<button type="submit" class="btn btn-primary"
+				ng-click="addNewStudent(orgID,fname,lname,email)">ADD</button>
+		</form>
+	</div>
+
+
+
+	<div class="generic-container" ng-hide="val">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<span class="lead"> Students Enrolled </span>
+				<button class="btn btn-primary col-md-offset-8"
+					ng-click="addStudent()">Add Student</button>
+			</div>
+
+			<div class="formcontainer">
+
+				<table class="table">
+					<thead>
+						<tr>
+							<th>ID</th>
+							<th>First Name</th>
+							<th>Last Name</th>
+							<th>Email</th>
+							<th>Actions</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="student in studentData track by $index">
+
+							<td>
+								<div ng-hide="editingData[student.id]">{{student.stuNo}}</div>
+								<div ng-show="editingData[student.id]">
+									<input type="text" ng-model="student.stuNo" />
+							</td>
+
+							<td>
+								<div ng-hide="editingData[student.id]">{{student.stufName}}</div>
+								<div ng-show="editingData[student.id]">
+									<input type="text" ng-model="student.stufName" />
+							</td>
+
+							<td>
+								<div ng-hide="editingData[student.id]">{{student.stulName}}</div>
+								<div ng-show="editingData[student.id]">
+									<input type="text" ng-model="student.stulName" />
+							</td>
+
+							<td>
+								<div ng-hide="editingData[student.id]">{{student.email}}</div>
+								<div ng-show="editingData[student.id]">
+									<input type="text" ng-model="student.email" />
+							</td>
+
+							<td><span ng-click="modify(student)"
+								class="glyphicon glyphicon-edit"
+								ng-hide="editingData[student.id]"> <span
+									ng-click="update(student)" class="glyphicon glyphicon-save"
+									ng-show="editingData[student.id]"></span>
+							</span> <span ng-click="deleteStudent(student.stuNo)"
+								class="glyphicon glyphicon-trash"></span></td>
+
+						</tr>
+					</tbody>
+
+
+				</table>
+			</div>
+		</div>
+	</div>
+
+</body>
+</html>

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    
+    <title>Document</title>
+    
+<!--    angular cdn -->
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+
+<!--   bootstrap cdn script -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+<!-- bootstrap cdn link -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+<script src="js/crudApp.js"></script>
+<script src="js/controller/studentController.js"></script>
+<script src="js/service/studentService.js"></script>
+
+</head>
+
+<style>
+body {
+    background-image: url("http://webdesignhabits.com/wp-content/uploads/2012/11/post_67_13.jpg");
+}
+</style>
+
+<body ng-app="myApp" ng-controller="studentController">
+   
+    <h2>Welcome to the Student Management System</h2>  
+    
+
+    <div class="col-md-offset-1 col-md-6" ng-show="val">
+    <form>
+  <div class="form-group">
+    <label for="firstName">First Name:</label>
+    <input type="text" placeholder="Enter First Name" class="form-control" ng-model="student.fname" id="fname">
+  </div>  {{fname}}
+  <div class="form-group">
+    <label for="lastName">Last Name:</label>
+    <input type="text"  placeholder="Enter Last Name" class="form-control" ng-model="student.lname" id="lname">
+  </div>
+  <div class="form-group">
+      <label for="email">Email:</label>
+      <input type="email" class="form-control" id="email" placeholder="Enter email" ng-model="student.email" name="email">
+    </div>
+  <button type="submit" class="btn btn-primary" ng-submit ="addStudent(student)">ADD</button>
+</form>
+ </div>   
+
+   
+    
+    <div class="generic-container" ng-hide="val">
+          <div class="panel panel-default">
+              <div class="panel-heading"><span class="lead"> Students Enrolled </span> <button class="btn btn-primary" ng-click="addStudent()" >Add Student</button>
+   </div>
+              
+              <div class="formcontainer">
+         
+         
+      
+         
+  <table class="table">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Email</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody ng-repeat="student in studentData track by $index" >
+      <tr>
+       <td>{{student.stuNo}}</td>
+        <td>{{student.stufName}}</td>
+        <td>{{student.stulName}}</td>
+        <td>{{student.email}}</td>
+        <td><span class="glyphicon glyphicon-edit"> <span ng-click="deleteRow(student)" class="glyphicon glyphicon-trash"></td>
+       
+      </tr>
+    </tbody>
+    
+
+  </table>
+</div>
+        </div>
+    </div>
+    
+
+    
+    
+ 
+    
+    
+    
+   
+    
+</body>
+</html>
